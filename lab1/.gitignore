@@ -1,0 +1,10 @@
+.idea/
+.gradle/
+gradle/
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+Lab1.iml
+local.properties
+settings.gradle
