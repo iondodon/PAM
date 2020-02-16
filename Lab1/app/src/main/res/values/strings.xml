@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">Lab 1+2</string>
     <string name="message">Hello</string>
-    <string name="buttonText">Set message</string>
+    <string name="setMessageButtonText">Set message</string>
     <string name="hint">message here</string>
+    <string name="openShowMessageActivity">show message activity</string>
+    <string name="openPostsActivityButtonText">open posts</string>
 </resources>
