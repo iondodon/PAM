@@ -1,13 +1,12 @@
-package com.utm.lab1
+package com.utm.lab1.activity
 
 import android.content.Intent
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
+import com.utm.lab1.R
 
 const val EXTRA_MESSAGE = "com.utm.lab1.MESSAGE"
 
@@ -34,6 +33,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openPostsActivity(View: View) {
-        startActivity(Intent(this, ListPosts::class.java))
+        startActivity(Intent(this, ListPostsActivity::class.java))
     }
 }

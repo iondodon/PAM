@@ -1,9 +1,10 @@
-package com.utm.lab1
+package com.utm.lab1.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.util.Log
+import com.utm.lab1.R
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class DisplayMessageActivity : AppCompatActivity() {

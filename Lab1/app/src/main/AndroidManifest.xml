@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayMessageActivity"></activity>
-        <activity android:name=".ListPosts" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.DisplayMessageActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.ListPostsActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
