@@ -1,56 +1,60 @@
 package com.utm.lab1.activity
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.utm.lab1.R
 import com.utm.lab1.adapter.PostCardAdapter
 import com.utm.lab1.model.Post
-import java.net.HttpURLConnection
-import java.net.URL
 
 class ListPostsActivity : AppCompatActivity() {
     private lateinit var postsRecyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun getPosts(): ArrayList<Post> {
-        val posts: ArrayList<Post> = ArrayList()
+    private fun getPosts() {
 
-        val url = URL("https://jsonplaceholder.typicode.com/posts")
-
-        with(url.openConnection() as HttpURLConnection) {
-            requestMethod = "GET"
-
-            println("\nSent 'GET' request to URL : $url; Response Code : $responseCode")
-
-            inputStream.bufferedReader().use {
-                it.lines().forEach { line ->
-                    Log.d("MY", line)
+        val httpAsync = "https://jsonplaceholder.typicode.com/posts"
+            .httpGet()
+            .responseString { request, response, result ->
+                when (result) {
+                    is Result.Failure -> {
+                        val ex = result.getException()
+                        println(ex)
+                    }
+                    is Result.Success -> {
+                        val data = result.get()
+                        val gson = Gson()
+                        val sType = object : TypeToken<List<Post>>() { }.type
+                        val otherList = gson.fromJson<List<Post>>(data, sType)
+                        val posts: ArrayList<Post>  = otherList as ArrayList<Post>
+                        
+                        showRecycleView(posts)
+                    }
                 }
             }
-        }
 
-        return posts
+        httpAsync.join()
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_posts)
-
-        val posts: ArrayList<Post> = this.getPosts()
-
-        viewManager = LinearLayoutManager(this)
+    private fun showRecycleView(posts: ArrayList<Post>) {
         viewAdapter = PostCardAdapter(posts)
-
-        postsRecyclerView = findViewById<RecyclerView>(R.id.postsRecyclerView)
+        postsRecyclerView = findViewById(R.id.postsRecyclerView)
         postsRecyclerView.layoutManager = viewManager
         postsRecyclerView.adapter = viewAdapter
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list_posts)
+        viewManager = LinearLayoutManager(this)
+
+        this.getPosts()
+    }
+
 }
