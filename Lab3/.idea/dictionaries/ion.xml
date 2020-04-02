@@ -1,7 +1,9 @@
 <component name="ProjectDictionaryState">
   <dictionary name="ion">
     <words>
+      <w>coroutine</w>
       <w>gson</w>
+      <w>lateinit</w>
     </words>
   </dictionary>
 </component>
