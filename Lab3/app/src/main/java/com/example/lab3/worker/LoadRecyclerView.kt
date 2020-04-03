@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.AsyncTask
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -26,20 +25,19 @@ class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
     private lateinit var deleteIcon: Drawable
 
     private lateinit var view: View
+    private lateinit var posts: ArrayList<Post>
 
     override fun doInBackground(vararg params: View?): Boolean {
         this.view = params[0]!!
 
-        val postService = PostService()
-        val postsCall: Call<List<Post>> = postService.getService().allPosts()
-
         try {
+            val postService = PostService()
+            val postsCall: Call<List<Post>> = postService.getService().allPosts()
             val posts = postsCall.execute()
-            Log.d("AAA", posts.toString())
+            this.posts = posts.body() as ArrayList<Post>
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
-
 
         return true
     }
@@ -51,12 +49,7 @@ class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
 
     // This is called when doInBackground() is finished
     override fun onPostExecute(result: Boolean?) {
-        val posts: ArrayList<Post> = ArrayList()
-
-        posts.add(Post("title1", "body1"))
-        posts.add(Post("title2", "body2"))
-
-        this.showRecycleView(posts)
+        showRecycleView(this.posts)
     }
 
     private fun showRecycleView(posts: ArrayList<Post>) {

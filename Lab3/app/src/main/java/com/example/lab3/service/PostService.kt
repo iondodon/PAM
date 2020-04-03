@@ -5,7 +5,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class PostService {
-
     private var service: IPostService
 
     fun getService(): IPostService {
