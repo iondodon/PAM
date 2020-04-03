@@ -4,10 +4,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class PostService {
-    private var service: IPostService
+class ApiService {
+    private var service: IApiService
 
-    fun getService(): IPostService {
+    fun getService(): IApiService {
         return service
     }
 
@@ -16,6 +16,6 @@ class PostService {
             .baseUrl("https://jsonplaceholder.typicode.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        service = retrofit.create(IPostService::class.java)
+        service = retrofit.create(IApiService::class.java)
     }
 }

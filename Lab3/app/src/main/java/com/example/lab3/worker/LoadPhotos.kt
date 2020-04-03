@@ -11,30 +11,29 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab3.R
-import com.example.lab3.adapter.PostCardAdapter
-import com.example.lab3.model.Post
-import com.example.lab3.service.PostService
+import com.example.lab3.adapter.PhotoCardAdapter
+import com.example.lab3.model.Photo
+import com.example.lab3.service.ApiService
 import retrofit2.Call
 
-
-class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
-    private lateinit var postsRecyclerView: RecyclerView
+class LoadPhotos: AsyncTask<View, Int, Boolean>() {
+    private lateinit var photosRecyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
 
     private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
     private lateinit var deleteIcon: Drawable
 
     private lateinit var view: View
-    private lateinit var posts: ArrayList<Post>
+    private lateinit var photos: ArrayList<Photo>
 
     override fun doInBackground(vararg params: View?): Boolean {
         this.view = params[0]!!
 
         try {
-            val postService = PostService()
-            val postsCall: Call<List<Post>> = postService.getService().allPosts()
-            val posts = postsCall.execute()
-            this.posts = posts.body() as ArrayList<Post>
+            val apiService = ApiService()
+            val photosCall: Call<List<Photo>> = apiService.getService().photos()
+            val photos = photosCall.execute()
+            this.photos = photos.body() as ArrayList<Photo>
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
@@ -42,21 +41,16 @@ class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
         return true
     }
 
-    // This is called each time you call publishProgress()
-    override fun onProgressUpdate(vararg progress: Int?) {
-
-    }
-
     // This is called when doInBackground() is finished
     override fun onPostExecute(result: Boolean?) {
-        showRecycleView(this.posts)
+        showRecycleView(this.photos)
     }
 
-    private fun showRecycleView(posts: ArrayList<Post>) {
-        viewAdapter = PostCardAdapter(posts)
-        postsRecyclerView = this.view.findViewById(R.id.postsRecyclerView)
-        postsRecyclerView.layoutManager = LinearLayoutManager(this.view.context)
-        postsRecyclerView.adapter = viewAdapter
+    private fun showRecycleView(photos: ArrayList<Photo>) {
+        viewAdapter = PhotoCardAdapter(photos)
+        photosRecyclerView = this.view.findViewById(R.id.photosRecyclerView)
+        photosRecyclerView.layoutManager = LinearLayoutManager(this.view.context)
+        photosRecyclerView.adapter = viewAdapter
 
         deleteIcon = ContextCompat.getDrawable(this.view.context, R.drawable.ic_delete_24px)!!
 
@@ -71,7 +65,7 @@ class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int) {
-                (viewAdapter as PostCardAdapter).removeItem(viewHolder)
+                (viewAdapter as PhotoCardAdapter).removeItem(viewHolder)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
@@ -116,6 +110,6 @@ class LoadRecyclerView: AsyncTask<View, Int, Boolean>() {
         }
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(postsRecyclerView)
+        itemTouchHelper.attachToRecyclerView(photosRecyclerView)
     }
 }

@@ -1,7 +1,6 @@
 package com.example.lab3
 
 import android.os.Bundle
-import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home,
             R.id.navigation_list_all_posts,
-            R.id.navigation_dashboard,
-            R.id.navigation_notifications
+            R.id.navigation_list_photos
         ))
 
         setupActionBarWithNavController(navController, appBarConfiguration)

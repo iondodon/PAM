@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lab3</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_list_all_posts">All Posts</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_list_all_posts">Posts</string>
+    <string name="title_list_photos">Photos</string>
+    <string name="photo_description">Photo description</string>
 </resources>
