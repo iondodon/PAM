@@ -7,5 +7,8 @@ data class Post(
     val title: String,
 
     @SerializedName("body")
-    val body: String
+    val body: String,
+
+    @SerializedName("userId")
+    val userId: Int
 )

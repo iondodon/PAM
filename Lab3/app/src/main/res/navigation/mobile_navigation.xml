@@ -23,5 +23,11 @@
         android:label="@string/title_list_photos"
         tools:layout="@layout/fragment_list_photos" />
 
+    <fragment
+        android:id="@+id/navigation_create_post"
+        android:name="com.example.lab3.ui.createPost.CreatePostFragment"
+        android:label="@string/title_create_post"
+        tools:layout="@layout/fragment_create_post" />
+
 
 </navigation>

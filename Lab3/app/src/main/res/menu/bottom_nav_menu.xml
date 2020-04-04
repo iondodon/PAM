@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_list_photos" />
 
+    <item
+        android:id="@+id/navigation_create_post"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:title="@string/title_create_post" />
+
 </menu>

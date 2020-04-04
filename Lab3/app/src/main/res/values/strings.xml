@@ -4,4 +4,11 @@
     <string name="title_list_all_posts">Posts</string>
     <string name="title_list_photos">Photos</string>
     <string name="photo_description">Photo description</string>
+    <string name="title_field_text_view">Title</string>
+    <string name="title_create_post">Create post</string>
+    <string name="insert_the_tile_hint">insert the tile</string>
+    <string name="body_field_text_view">Body</string>
+    <string name="insert_the_body_hint">Post content</string>
+    <string name="post_button_text">Post</string>
+    <string name="result_will_be_here">Result will be here</string>
 </resources>
