@@ -29,5 +29,11 @@
         android:label="@string/title_create_post"
         tools:layout="@layout/fragment_create_post" />
 
+    <fragment
+        android:id="@+id/navigation_update_post"
+        android:name="com.example.lab3.ui.updatePost.UpdatePostFragment"
+        android:label="@string/title_update_post"
+        tools:layout="@layout/fragment_update_post" />
+
 
 </navigation>

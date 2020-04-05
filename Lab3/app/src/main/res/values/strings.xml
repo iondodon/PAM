@@ -11,4 +11,6 @@
     <string name="insert_the_body_hint">Post content</string>
     <string name="post_button_text">Post</string>
     <string name="result_will_be_here">Result will be here</string>
+    <string name="title_update_post">Update</string>
+    <string name="update_button_text">Update</string>
 </resources>

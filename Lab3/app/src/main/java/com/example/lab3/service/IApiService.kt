@@ -3,15 +3,13 @@ package com.example.lab3.service
 import com.example.lab3.model.Photo
 import com.example.lab3.model.Post
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
-
-
+import retrofit2.http.*
 
 
 interface IApiService {
+    @GET("posts/{id}")
+    fun getPost(@Path("id") id: Int): Call<Post>
+
     @GET("posts")
     fun posts(): Call<List<Post>>
 
@@ -25,4 +23,7 @@ interface IApiService {
     @POST("posts")
     @Headers("Content-type: application/json; charset=UTF-8")
     fun createPost(@Body post: Post?): Call<Post?>?
+
+    @Headers("Content-type: application/json; charset=UTF-8")
+    fun updatePost(@Body updatedPost: Post?): Call<Post?>?
 }
