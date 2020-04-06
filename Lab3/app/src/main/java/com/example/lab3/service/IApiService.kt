@@ -24,6 +24,7 @@ interface IApiService {
     @Headers("Content-type: application/json; charset=UTF-8")
     fun createPost(@Body post: Post?): Call<Post?>?
 
+    @PUT("posts/{id}")
     @Headers("Content-type: application/json; charset=UTF-8")
-    fun updatePost(@Body updatedPost: Post?): Call<Post?>?
+    fun updatePost(@Body updatedPost: Post?, @Path("id") id: Int): Call<Post?>?
 }

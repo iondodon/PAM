@@ -41,7 +41,7 @@ class ListAllPostsFragment : Fragment() {
         return root
     }
 
-     private fun loadPostsAsync(): Deferred<ArrayList<Post>> = CoroutineScope(Dispatchers.IO).async {
+    private fun loadPostsAsync(): Deferred<ArrayList<Post>> = CoroutineScope(Dispatchers.IO).async {
         try {
             val apiService = ApiService()
             val postsCall: Call<List<Post>> = apiService.getService().posts()
